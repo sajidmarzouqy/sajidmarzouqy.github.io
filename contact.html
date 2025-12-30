@@ -144,10 +144,7 @@
                         <span class="detail-label">Email</span>
                         <span class="detail-value"><a href="mailto:sajidmarzouqy@gmail.com">sajidmarzouqy@gmail.com</a></span>
                     </div>
-                    <div class="detail-item">
-                        <span class="detail-label" id="label-social">Réseaux Sociaux</span>
-                        <span class="detail-value"><a href="https://www.linkedin.com/in/sajid-marzouqy-99ab9a335" target="_blank">LinkedIn Profile ↗</a></span>
-                    </div>
+                    
                     <div class="detail-item">
                         <span class="detail-label" id="label-loc">Localisation</span>
                         <span class="detail-value">Île-de-France, France</span>
@@ -192,7 +189,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 Sajid Marzouqy. </p>
+        <p>&copy; 2025 Sajid Marzouqy. <span id="footer-rights">Tous droits réservés.</span></p>
     </footer>
 
     <script>
@@ -215,6 +212,7 @@
                 headers: { 'Accept': 'application/json' }
             }).then(response => {
                 if (response.ok) {
+                    // Message Succès
                     status.innerHTML = (lang === 'en') 
                         ? "Thank you! Your message has been sent successfully." 
                         : "Merci ! Votre message a été envoyé avec succès.";
@@ -268,7 +266,6 @@
                 : "Je suis à la recherche d'une alternance en <strong>Cybersécurité</strong> (rythme 2 semaines / 2 semaines). Disponible pour échanger sur vos besoins en sécurité et architecture réseau.";
             }
 
-            if(document.getElementById('label-social')) document.getElementById('label-social').innerText = isEn ? "Social Media" : "Réseaux Sociaux";
             if(document.getElementById('label-loc')) document.getElementById('label-loc').innerText = isEn ? "Location" : "Localisation";
 
             // FORM
@@ -300,17 +297,13 @@
             }, 600);
         }
 
-        // Au chargement : on applique la langue si elle existe
+        // Au chargement : on applique la langue si elle existe, sinon français par défaut
         window.onload = function() {
-            const savedLang = localStorage.getItem('selectedLanguage');
-            if (savedLang) {
-                updateTexts(savedLang);
-                document.getElementById('top-select').value = savedLang;
-                document.getElementById('language-overlay').style.display = 'none';
-            } else {
-                document.getElementById('language-overlay').style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            }
+            const savedLang = localStorage.getItem('selectedLanguage') || 'fr';
+            // Mettre à jour le selecteur visuel
+            document.getElementById('top-select').value = savedLang;
+            // Appliquer les textes
+            updateTexts(savedLang);
         }
     </script>
 </body>
